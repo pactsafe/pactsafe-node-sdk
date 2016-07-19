@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael Welling <michael@pactsafe.com> (https://www.pactsafe.com/)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.73.0"
+  }
 }
