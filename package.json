@@ -1,14 +1,32 @@
 {
-  "name": "pactsafe-api",
-  "version": "1.0.0",
-  "description": "Node.js client wrapper for the PactSafe Rest API",
-  "main": "index.js",
+  "name": "pactsafe-activity",
+  "version": "0.1.0",
+  "description": "Node.js client for the PactSafe Activity API.",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael Welling <michael@pactsafe.com> (https://www.pactsafe.com/)",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.73.0"
+    "clone": "~0.1.17",
+    "commander": "^2.9.0",
+    "component-type": "~1.0.0",
+    "crypto-token": "^1.0.1",
+    "debug": "^2.2.0",
+    "join-component": "~1.0.0",
+    "lodash": "~2.4.1",
+    "superagent": "^1.4.0",
+    "superagent-proxy": "^1.0.0",
+    "superagent-retry": "^0.5.1"
+  },
+  "devDependencies": {
+    "async": "~0.9.0",
+    "brfs": "^1.3.0",
+    "browserify": "^8.1.3",
+    "express": "~3.4.8",
+    "http-proxy": "~1.11.1",
+    "mocha": "1.8.1",
+    "nsp": "^2.0.2"
   }
 }

@@ -37,6 +37,10 @@
 !/node_modules/.gitignore
 !/node_modules/node-recurly/*
 
+# Misc #
+################
+/_ref
+
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml
