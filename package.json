@@ -1,5 +1,5 @@
 {
-  "name": "pactsafe-activity",
+  "name": "pactsafe-activity-node",
   "version": "0.1.0",
   "description": "Node.js client for the PactSafe Activity API.",
   "main": "lib/index.js",
@@ -9,6 +9,7 @@
   "author": "Michael Welling <michael@pactsafe.com> (https://www.pactsafe.com/)",
   "license": "ISC",
   "dependencies": {
+    "bson": "~0.4.23",
     "clone": "~0.1.17",
     "commander": "^2.9.0",
     "component-type": "~1.0.0",

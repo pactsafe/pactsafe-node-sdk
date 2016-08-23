@@ -4,19 +4,17 @@ var httpProxy = require('http-proxy');
 var http = require('http');
 var debug = require('debug')('pactsafe-activity:server');
 var ports = exports.ports = { source: 4063, proxy: 4064 };
-var Activity = require('..');
 
-var activity = Activity('4163db85-2a9d-4bba-b74e-ad12375d7a42', {
+var Activity = require('..');
+var activity = new Activity('4163db85-2a9d-4bba-b74e-ad12375d7a42', { test_mode: true }, {
   //host: 'http://localhost:4063',
   host: 'https://response.pactsafe.dev:3002',
-  flushAt: 1,
-  test_mode: true
+  flush_at: 1
 });
 
 /**
  * Proxy.
  */
-
 var proxy = httpProxy.createProxyServer();
 
 exports.proxy = http.createServer(function(req, res) {
@@ -30,7 +28,6 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 /**
  * App.
  */
- 
 var app = express()
   .use(express.bodyParser())
   .use(express.basicAuth('4163db85-2a9d-4bba-b74e-ad12375d7a42', ''));
@@ -44,7 +41,6 @@ exports.app = app;
  * @param {Response} res
  * @param {Funtion} next
  */
-
 exports.fixture = function(req, res, next) {
   var batch = req.body.batch;
   if ('error' == batch[0]) return res.json(400, { error: { message: 'error' }});
@@ -81,8 +77,7 @@ exports.respond = function(req, res, next) {
 */
 };
 
-app
-  .post('/v1/batch', exports.fixture)
+app.post('/send/batch', exports.fixture)
   .get('/retrieve', exports.respond)
   .listen(ports.source, function() {
     console.info('[%s] Express server started: %s:%s', new Date().toISOString(), 'localhost', ports.source);
