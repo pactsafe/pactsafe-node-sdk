@@ -3,6 +3,7 @@ var __pkg = require('../package.json'),
   express = require('express'),
   httpProxy = require('http-proxy'),
   http = require('http'),
+  _ = require('lodash'),
   debug = require('debug')(__pkg.name + ':server'),
   ports = exports.ports = { source: 4063, proxy: 4064 };
 
@@ -36,9 +37,19 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
  * @param {Funtion} next
  */
 exports.fixture = function(req, res, next) {
-  var batch = req.body.batch;
-  if ('error' == batch[0]) return res.json(400, { error: { message: 'error' }});
-  res.json(200);
+  var params = _.isEmpty(req.body) ? req.query : req.body;
+  res.json(params);
+};
+
+exports.send = function(req, res, next) {
+  activity.load(req.query.gkey, { order_id: '123abc' }, function(err, group) {
+    if (err) return res.status(err.status || 400).json(err);
+    
+    activity.agreed(req.query.sig, { render_id: group.get('render_id') }, function(err, reply) {
+      if (err) return res.status(err.status || 400).json(err);
+      res.json(reply);
+    });
+  });
 };
 
 exports.respond = function(req, res, next) {
@@ -62,7 +73,8 @@ exports.app = express()
   .use(express.bodyParser());
 
 exports.app
-  .post('/send/batch', exports.fixture)
+  .post('/send', exports.fixture)
+  .get('/send', exports.send)
   .get('/retrieve', exports.respond)
   .get('/load', exports.load);
 
