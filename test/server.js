@@ -1,14 +1,17 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-var express = require('express');
-var httpProxy = require('http-proxy');
-var http = require('http');
-var debug = require('debug')('pactsafe-activity:server');
-var ports = exports.ports = { source: 4063, proxy: 4064 };
+var __pkg = require('../package.json'),
+  express = require('express'),
+  httpProxy = require('http-proxy'),
+  http = require('http'),
+  debug = require('debug')(__pkg.name + ':server'),
+  ports = exports.ports = { source: 4063, proxy: 4064 };
 
-var Activity = require('..');
-var activity = new Activity('4163db85-2a9d-4bba-b74e-ad12375d7a42', { test_mode: true }, {
-  //host: 'http://localhost:4063',
-  host: 'https://response.pactsafe.dev:3002',
+/**
+ * Create sample Activity client.
+ */
+var pactsafe = require('..');
+var activity = new pactsafe.Activity('00000000-0000-0000-0000-000000000000', { test_mode: true }, {
+  host: 'http://localhost:4063',
   flush_at: 1
 });
 
@@ -26,16 +29,7 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 });
 
 /**
- * App.
- */
-var app = express()
-  .use(express.bodyParser())
-  .use(express.basicAuth('4163db85-2a9d-4bba-b74e-ad12375d7a42', ''));
-
-exports.app = app;
-
-/**
- * Fixture.
+ * Sample routes.
  *
  * @param {Request} req
  * @param {Response} res
@@ -48,37 +42,30 @@ exports.fixture = function(req, res, next) {
 };
 
 exports.respond = function(req, res, next) {
-  activity.load(req.query.gkey || 'ps-login-clickwrap', { order_id: '123abc' }, function(err, group) {
-    if (err) return res.status(400).json(err);
-    
-    group.render({}, function(err, reply) {
-      if (err) return res.status(400).json(err);
-      res.json(group);
-    });
-  });
-
-/*
-  activity.retrieve(req.query.sig || 'adamrgillaspie@gmail.com', [ 1, 2, 3, 4 ], function(err, reply) {
-    if (err) return res.status(400).json(err);
-    console.dir(reply);
+  activity.retrieve(req.query.sig, null, function(err, reply) {
+    if (err) return res.status(err.status || 400).json(err);
     res.json(reply);
   });
-*/
-
-/*
-  activity.agreed({
-    signer_id: 'adam@pactsafe.com',
-    contracts: [ 1, 2 ],
-    versions: [ '57acb5b490cb50b4220f196b', '57acb71390cb50b4220f196c' ]
-  }, function(err, reply) {
-    if (err) return res.status(400).json(err);
-    res.json(reply);
-  });
-*/
 };
 
-app.post('/send/batch', exports.fixture)
-  .get('/retrieve', exports.respond)
-  .listen(ports.source, function() {
-    console.info('[%s] Express server started: %s:%s', new Date().toISOString(), 'localhost', ports.source);
+exports.load = function(req, res, next) {
+  activity.load(req.query.gkey, { order_id: '123abc' }, function(err, group) {
+    if (err) return res.status(err.status || 400).json(err);
+    res.json(group);
   });
+};
+
+/**
+ * App.
+ */
+exports.app = express()
+  .use(express.bodyParser());
+
+exports.app
+  .post('/send/batch', exports.fixture)
+  .get('/retrieve', exports.respond)
+  .get('/load', exports.load);
+
+exports.app.listen(ports.source, function() {
+  console.info('[%s] Express server started: %s:%s', new Date().toISOString(), 'localhost', ports.source);
+});

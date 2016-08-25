@@ -2,18 +2,25 @@
   "name": "pactsafe-activity-node",
   "version": "0.1.0",
   "description": "Node.js client for the PactSafe Activity API.",
+  "keywords": [
+    "legal",
+    "pactsafe",
+    "contract",
+    "agreement",
+    "policy",
+    "clickwrap",
+    "terms",
+    "esignature",
+    "signature",
+    "client",
+    "analytics"
+  ],
   "main": "lib/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Michael Welling <michael@pactsafe.com> (https://www.pactsafe.com/)",
-  "license": "ISC",
   "dependencies": {
     "bson": "~0.4.23",
     "clone": "~0.1.17",
     "commander": "^2.9.0",
     "component-type": "~1.0.0",
-    "crypto-token": "^1.0.1",
     "debug": "^2.2.0",
     "join-component": "~1.0.0",
     "lodash": "~2.4.1",
@@ -29,5 +36,35 @@
     "http-proxy": "~1.11.1",
     "mocha": "1.8.1",
     "nsp": "^2.0.2"
-  }
+  },
+  "engines": {
+    "node": ">= 0.12.x"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "author": "Adam Gillaspie <adam@pactsafe.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pactsafe/pactsafe-activity-node.git"
+  },
+  "homepage": "https://github.com/pactsafe/pactsafe-activity-node#readme",
+  "bugs": {
+    "url": "https://github.com/pactsafe/pactsafe-activity-node/issues"
+  },
+  "maintainers": [
+    {
+      "name": "Adam Gillaspie",
+      "email": "adam@pactsafe.com"
+    },
+    {
+      "name": "Michael Welling",
+      "email": "michael@pactsafe.com"
+    },
+    {
+      "name": "PactSafe Engineering",
+      "email": "engineering@pactsafe.com"
+    }
+  ]
 }
