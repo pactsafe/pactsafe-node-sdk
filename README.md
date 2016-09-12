@@ -1,13 +1,7 @@
 
 #pactsafe-node
 
-[![Build Status](https://api.travis-ci.org/pactsafe/pactsafe-node.svg?branch=master)](https://travis-ci.org/pactsafe/pactsafe-node)
-
 A Node.js client for the [PactSafe](https://www.pactsafe.com) Activity API. Integrate into any application for secure legal record-keeping.
-
-
-## Getting Started
-To get started with our Node.js client, check out the [quickstart guide](https://www.pactsafe.com/libraries/node/quickstart). It will help you install and configure the client on your servers in just a few minutes. Once you’ve installed the client, you can find additional details in our API reference below.
 
 ## Installation
 
