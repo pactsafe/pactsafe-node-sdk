@@ -6,7 +6,7 @@ A Node.js client for the [PactSafe](https://www.pactsafe.com) Activity API. Inte
 ## Installation
 
 ```bash
-$ npm install --save pactsafe-node
+$ npm install --save https://github.com/pactsafe/pactsafe-node.git
 ```
 
 ## Initialization
