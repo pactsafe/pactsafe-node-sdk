@@ -1,20 +1,15 @@
-var __pkg = require('../package.json'),
-  assert = require('assert'),
-  async = require('async'),
-  server = require('./server'),
-  pactsafe = require('..'),
-  Activity = pactsafe.Activity;
+const assert = require('assert');
+const server = require('./server');
+const pactsafe = require('..');
+const Activity = pactsafe.Activity;
 
-var a,
-  noop = function() {},
-  access_id = '00000000-0000-0000-0000-000000000000';
+let a;
+let noop = function() {};
+const access_id = '00000000-0000-0000-0000-000000000000';
 
 describe('Activity', function() {
-  before(function(done) {
-    server.app
-      .post('/send/batch', server.fixture)
-      .listen(server.ports.source, done);
-  });
+  before(done => server.start(done));
+  after(done => server.stop(done));
 
   beforeEach(function() {
     a = Activity(access_id, {}, {
@@ -49,19 +44,20 @@ describe('Activity', function() {
   });
 
   it('should take options', function() {
-    var a = Activity(access_id, {}, {
+    const a = Activity(access_id, {}, {
       host: 'a',
       flush_at: 1,
       flush_after: 2
     });
-    assert.equal(a.host, 'a');
-    assert.equal(a.flush_at, 1);
-    assert.equal(a.flush_after, 2);
+
+    assert.equal(a.options.host, 'a');
+    assert.equal(a.options.flush_at, 1);
+    assert.equal(a.options.flush_after, 2);
   });
 
   it('should keep the flush_at option above zero', function() {
-    var a = Activity(access_id, {}, { flush_at: 0 });
-    assert.equal(a.flush_at, 1);
+    const a = Activity(access_id, {}, { flush_at: 0 });
+    assert.equal(a.options.flush_at, 1);
   });
 });
 

@@ -13,22 +13,22 @@ $ npm install --save pactsafe-node
 
 Require the `pactsafe-node` module and initialize the Activity client, passing your PactSafe Site's `access_id` as the first argument.
 ```javascript
-var Activty = require('pactsafe-node');
-var activity = new Activity('YOUR_ACCESS_ID');
+const Activty = require('pactsafe-node');
+const activity = new Activity('YOUR_ACCESS_ID');
 ```
 
 ## Configuration
 
 The second argument to the `Activity` constructor is an optional object of properties and parameters for the Activity client.
 ```javascript
-var activity = new Activity('YOUR_ACCESS_ID', {
+const activity = new Activity('YOUR_ACCESS_ID', {
   test_mode: true
 });
 ```
 
 The third argument is an optional object of configuration settings.
 ```javascript
-var activity = new Activity('YOUR_ACCESS_ID', {
+const activity = new Activity('YOUR_ACCESS_ID', {
   test_mode: true
 },
 {
@@ -41,10 +41,10 @@ var activity = new Activity('YOUR_ACCESS_ID', {
 
 Every Action sent to the PactSafe Activity API is built from the parameters stored on the Activity client. These parameter values can be set or retrieved at any point using the following functions.
 ```javascript
-activity.set('page_title', 'Registration Page');
+activity.set({page_title: 'Registration Page'});
 ```
 ```javascript
-var title = activity.get('page_title');
+const title = activity.get('page_title');
 ```
 
 ## Load
