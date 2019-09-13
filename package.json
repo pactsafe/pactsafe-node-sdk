@@ -17,14 +17,14 @@
   ],
   "main": "lib/index.js",
   "dependencies": {
-    "bson": "^0.4.23",
-    "clone": "^0.1.17",
+    "bson": "^4.0.2",
+    "clone": "^2.1.2",
     "component-type": "^1.0.0",
-    "debug": "^2.2.0",
+    "debug": "^4.1.1",
     "join-component": "^1.0.0",
     "lodash": "^4.17.15",
-    "superagent": "^1.4.0",
-    "superagent-retry": "^0.5.1"
+    "superagent": "^5.1.0",
+    "superagent-retry": "^0.6.0"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",
@@ -36,7 +36,7 @@
   },
   "scripts": {
     "test": "mocha test",
-    "test:live": "node test/LiveTest"
+    "test:live": "node live/LiveTest"
   },
   "author": "Adam Gillaspie <adam@pactsafe.com>",
   "license": "ISC",
