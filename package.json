@@ -17,7 +17,7 @@
   ],
   "main": "lib/index.js",
   "dependencies": {
-    "bson": "^4.0.2",
+    "bson": "^4.2.0",
     "clone": "^2.1.2",
     "component-type": "^1.0.0",
     "debug": "^4.1.1",
