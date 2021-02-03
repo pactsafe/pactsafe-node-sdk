@@ -2,6 +2,7 @@
   "name": "pactsafe-activity-node",
   "version": "2.0.0",
   "description": "Node.js client for the PactSafe Activity API.",
+  "license": "MIT",
   "keywords": [
     "legal",
     "pactsafe",
@@ -39,7 +40,6 @@
     "test:live": "node live/LiveTest"
   },
   "author": "Adam Gillaspie <adam@pactsafe.com>",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git://github.com/pactsafe/pactsafe-activity-node.git"
