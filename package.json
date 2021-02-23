@@ -23,14 +23,14 @@
     "component-type": "^1.0.0",
     "debug": "^4.1.1",
     "join-component": "^1.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "superagent": "^5.1.0",
     "superagent-retry": "^0.6.0"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "http-proxy": "^1.11.1"
+    "http-proxy": "^1.18.1"
   },
   "engines": {
     "node": ">= 8.0.0"
