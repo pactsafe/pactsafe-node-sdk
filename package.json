@@ -21,7 +21,7 @@
     "bson": "^4.0.2",
     "clone": "^2.1.2",
     "component-type": "^1.0.0",
-    "debug": "^4.1.1",
+    "debug": "^4.3.3",
     "join-component": "^1.0.0",
     "lodash": "^4.17.21",
     "superagent": "^5.1.0",
