@@ -24,7 +24,7 @@
     "debug": "^4.1.1",
     "join-component": "^1.0.0",
     "lodash": "^4.17.21",
-    "superagent": "^5.1.0",
+    "superagent": "^5.3.1",
     "superagent-retry": "^0.6.0"
   },
   "devDependencies": {
